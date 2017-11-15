@@ -54,7 +54,7 @@ class postfix(
   $config_mode       = '0644',
   $sample_directory  = "/usr/share/doc/postfix-${postfix::params::version}/samples",
   $readme_directory  = "/usr/share/doc/postfix-${postfix::params::version}/README_FILES",
-  $manpage_directory = '/usr/share/man,',
+  $manpage_directory = '/usr/share/man',
   $html_directory    = 'no',
   $setgid_group      = 'postdrop',
   $mailq_path        = '/usr/bin/mailq.postfix',
