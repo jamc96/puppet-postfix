@@ -1,8 +1,6 @@
 # == Class: postfix::params
 #
 class postfix::params {
-  $package_name     = 'postfix'
-  $package_provider = 'yum'
 
   case $::operatingsystemmajrelease {
     '7': {
