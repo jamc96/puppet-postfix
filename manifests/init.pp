@@ -46,6 +46,9 @@ class postfix(
   $package_ensure   = $postfix::params::package_ensure,
   $package_name     = $postfix::params::package_name,
   $package_provider = $postfix::params::package_provider,
+  $port             = '587',
+  $sample_directory = "/usr/share/doc/postfix-${postfix::params::version}/samples",
+  $readme_directory = "/usr/share/doc/postfix-${postfix::params::version}/README_FILES",
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->
