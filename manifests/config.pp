@@ -26,6 +26,9 @@ class postfix::config(
   $daemon_directory  = $::postfix::daemon_directory,
   $command_directory = $::postfix::command_directory,
   $queue_directory   = $::postfix::queue_directory,
+  $myhostname        = $::postfix::myhostname,
+  $mydomain          = $::postfix::mydomain,
+  $myorigin          = $::postfix::myorigin,
   ) {
   # resources
   file { 'main.cf':

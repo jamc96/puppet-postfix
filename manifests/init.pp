@@ -72,6 +72,9 @@ class postfix(
   $daemon_directory  = '/usr/libexec/postfix',
   $command_directory = '/usr/sbin',
   $queue_directory   = '/var/spool/postfix',
+  $myhostname        = $::hostname,
+  $mydomain          = $::domain,
+  $myorigin          = $::fqdn,
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->
