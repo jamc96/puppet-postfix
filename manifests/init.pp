@@ -43,7 +43,9 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class postfix(
-
+  $package_ensure   = $postfix::params::package_ensure,
+  $package_name     = $postfix::params::package_name,
+  $package_provider = $postfix::params::package_provider,
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->

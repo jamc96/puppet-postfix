@@ -1,5 +1,7 @@
 # == Class: postfix::params
 #
 class postfix::params {
-  # resources
+  $package_ensure   = 'present'
+  $package_name     = 'postfix'
+  $package_provider = 'yum'
 }
