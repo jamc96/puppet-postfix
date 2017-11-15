@@ -8,7 +8,7 @@ class postfix::config(
   file { '/etc/postfix/main.cf':
     ensure  => 'file',
     content => template("${module_name}/main.cf.erb"),
-    group   => 'roots',
+    group   => 'root',
     mode    => '0644',
     owner   => 'root',
   }
