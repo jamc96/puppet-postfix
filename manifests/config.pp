@@ -6,15 +6,10 @@ class postfix::config(
   ) {
   # resources
   file { '/etc/postfix/main.cf':
-    ensure   => 'file',
-    content  => template("${module_name}/main.cf.erb"),
-    group    => 'roots',
-    mode     => '0644',
-    owner    => 'root',
-    selrange => 's0',
-    selrole  => 'object_r',
-    seltype  => 'postfix_etc_t',
-    seluser  => 'system_u',
-    type     => 'file',
+    ensure  => 'file',
+    content => template("${module_name}/main.cf.erb"),
+    group   => 'roots',
+    mode    => '0644',
+    owner   => 'root',
   }
 }
