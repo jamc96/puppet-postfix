@@ -47,6 +47,11 @@ class postfix(
   $package_name     = $postfix::params::package_name,
   $package_provider = $postfix::params::package_provider,
   $port             = '587',
+  $config_dir       = '/etc/postfix/main.cf',
+  $config_ensure    = 'file',
+  $config_group     = 'root',
+  $config_owner     = '0644',
+  $config_mode      = 'root',
   $sample_directory = "/usr/share/doc/postfix-${postfix::params::version}/samples",
   $readme_directory = "/usr/share/doc/postfix-${postfix::params::version}/README_FILES",
   ) inherits postfix::params {
