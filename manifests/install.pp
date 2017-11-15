@@ -1,9 +1,9 @@
 # == Class: postfix::install
 #
 class postfix::install(
-  $package_ensure   = $::posftix::package_ensure,
-  $package_name     = $::posftix::package_name,
-  $package_provider = $::posftix::package_provider,
+  $package_ensure   = $::postfix::package_ensure,
+  $package_name     = $::postfix::package_name,
+  $package_provider = $::postfix::package_provider,
   ) {
   # resources
   package { $package_name:
