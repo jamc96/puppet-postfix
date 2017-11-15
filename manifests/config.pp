@@ -8,9 +8,9 @@ class postfix::config(
   file { '/etc/postfix/main.cf':
     ensure   => 'file',
     content  => template("${module_name}/main.cf.erb"),
-    group    => '0',
+    group    => 'roots',
     mode     => '0644',
-    owner    => '0',
+    owner    => 'root',
     selrange => 's0',
     selrole  => 'object_r',
     seltype  => 'postfix_etc_t',
