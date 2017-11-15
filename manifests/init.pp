@@ -63,7 +63,7 @@ class postfix(
   $debug_peer_level  = '2',
   $alias_database    = 'hash:/etc/aliases',
   $alias_maps        = 'hash:/etc/aliases',
-  $unknown_local_recipient_reject_code = '550',
+  $ukwn_reject_code  = '550',
   $mydestination     = '$myhostname, localhost.$mydomain, localhost',
   $inet_protocols    = 'all',
   $inet_interfaces   = 'localhost',

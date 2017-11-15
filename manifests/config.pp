@@ -17,7 +17,7 @@ class postfix::config(
   $debug_peer_level  = $::postfix::debug_peer_level,
   $alias_database    = $::postfix::alias_database,
   $alias_maps        = $::postfix::alias_maps,
-  $unknown_local_recipient_reject_code = $::postfix::unknown_local_recipient_reject_code,
+  $ukwn_reject_code  = $::postfix::unknown_local_recipient_reject_code,
   $mydestination     = $::postfix::mydestination,
   $inet_protocols    = $::postfix::inet_protocols,
   $inet_interfaces   = $::postfix::inet_interfaces,
