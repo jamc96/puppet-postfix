@@ -81,7 +81,7 @@ myhostname = <%= @hostname %>
 # $mydomain is used as a default value for many other configuration
 # parameters.
 #
-#mydomain = <%= @domain %>
+mydomain = <%= @domain %>
 
 # SENDING MAIL
 #
@@ -315,7 +315,7 @@ unknown_local_recipient_reject_code = <%= @ukwn_reject_code %>
 #relayhost = [gateway.my.domain]
 #relayhost = [mailserver.isp.tld]
 #relayhost = uucphost
-#relayhost = [an.ip.add.ress]
+relayhost = <%= @relayhost %>
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -678,3 +678,7 @@ sample_directory = <%= @sample_directory %>
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = <%= @readme_directory %>
+
+# smtp_use_tls: enables transport layer security.
+#
+smtp_use_tls = <%= @smtp_use_tls %>

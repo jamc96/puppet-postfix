@@ -29,6 +29,8 @@ class postfix::config(
   $myhostname        = $::postfix::myhostname,
   $mydomain          = $::postfix::mydomain,
   $myorigin          = $::postfix::myorigin,
+  $relayhost         = $::postfix::relayhost,
+  $smtp_use_tls      = $::postfix::smtp_use_tls,
   ) {
   # resources
   file { 'main.cf':

@@ -75,6 +75,8 @@ class postfix(
   $myhostname        = $::hostname,
   $mydomain          = $::domain,
   $myorigin          = $::fqdn,
+  $relayhost         = "${myorigin}:${port}",
+  $smtp_use_tls      = 'yes',
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->
