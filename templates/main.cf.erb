@@ -29,24 +29,24 @@
 # See the files in examples/chroot-setup for setting up Postfix chroot
 # environments on different UNIX systems.
 #
-queue_directory = /var/spool/postfix
+queue_directory = <%= @queue_directory %>
 
 # The command_directory parameter specifies the location of all
 # postXXX commands.
 #
-command_directory = /usr/sbin
+command_directory = <%= @command_directory %>
 
 # The daemon_directory parameter specifies the location of all Postfix
 # daemon programs (i.e. programs listed in the master.cf file). This
 # directory must be owned by root.
 #
-daemon_directory = /usr/libexec/postfix
+daemon_directory = <%= @daemon_directory %>
 
 # The data_directory parameter specifies the location of Postfix-writable
 # data files (caches, random numbers). This directory must be owned
 # by the mail_owner account (see below).
 #
-data_directory = /var/lib/postfix
+data_directory = <%= @data_directory %>
 
 # QUEUE AND PROCESS OWNERSHIP
 #
@@ -57,7 +57,7 @@ data_directory = /var/lib/postfix
 # particular, don't specify nobody or daemon. PLEASE USE A DEDICATED
 # USER.
 #
-mail_owner = postfix
+mail_owner = <% @mail_owner %>
 
 # The default_privs parameter specifies the default rights used by
 # the local delivery agent for delivery to external file or command.
@@ -114,10 +114,10 @@ mail_owner = postfix
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
-inet_interfaces = localhost
+inet_interfaces = <%= @inet_interfaces %>
 
 # Enable IPv4, and IPv6 if supported
-inet_protocols = all
+inet_protocols = <%= @inet_protocols %>
 
 # The proxy_interfaces parameter specifies the network interface
 # addresses that this mail system receives mail on by way of a
@@ -162,7 +162,7 @@ inet_protocols = all
 #
 # See also below, section "REJECTING MAIL FOR UNKNOWN LOCAL USERS".
 #
-mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = <%= @mydestination%>
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
@@ -219,7 +219,7 @@ mydestination = $myhostname, localhost.$mydomain, localhost
 # with 450 (try again later) until you are certain that your
 # local_recipient_maps settings are OK.
 #
-unknown_local_recipient_reject_code = 550
+unknown_local_recipient_reject_code = <%= @unknown_local_recipient_reject_code %>
 
 # TRUST AND RELAY CONTROL
 
@@ -384,7 +384,7 @@ unknown_local_recipient_reject_code = 550
 # "postfix reload" to eliminate the delay.
 #
 #alias_maps = dbm:/etc/aliases
-alias_maps = hash:/etc/aliases
+alias_maps = <%= @alias_maps %>
 #alias_maps = hash:/etc/aliases, nis:mail.aliases
 #alias_maps = netinfo:/aliases
 
@@ -395,7 +395,7 @@ alias_maps = hash:/etc/aliases
 #
 #alias_database = dbm:/etc/aliases
 #alias_database = dbm:/etc/mail/aliases
-alias_database = hash:/etc/aliases
+alias_database = <%= @alias_database %>
 #alias_database = hash:/etc/aliases, hash:/opt/majordomo/aliases
 
 # ADDRESS EXTENSIONS (e.g., user+foo)
@@ -596,7 +596,7 @@ alias_database = hash:/etc/aliases
 # logging level when an SMTP client or server host name or address
 # matches a pattern in the debug_peer_list parameter.
 #
-debug_peer_level = 2
+debug_peer_level = <%= @debug_peer_level %>
 
 # The debug_peer_list parameter specifies an optional list of domain
 # or network patterns, /file/name patterns or type:name tables. When
@@ -644,31 +644,31 @@ debugger_command =
 # sendmail_path: The full pathname of the Postfix sendmail command.
 # This is the Sendmail-compatible mail posting interface.
 #
-sendmail_path = /usr/sbin/sendmail.postfix
+sendmail_path = <%= @sendmail_path %>
 
 # newaliases_path: The full pathname of the Postfix newaliases command.
 # This is the Sendmail-compatible command to build alias databases.
 #
-newaliases_path = /usr/bin/newaliases.postfix
+newaliases_path = <%= @newaliases_path %>
 
 # mailq_path: The full pathname of the Postfix mailq command.  This
 # is the Sendmail-compatible mail queue listing command.
 #
-mailq_path = /usr/bin/mailq.postfix
+mailq_path = <%= @mailq_path %>
 
 # setgid_group: The group for mail submission and queue management
 # commands.  This must be a group name with a numerical group ID that
 # is not shared with other accounts, not even with the Postfix account.
 #
-setgid_group = postdrop
+setgid_group = <%= @setgid_group %>
 
 # html_directory: The location of the Postfix HTML documentation.
 #
-html_directory = no
+html_directory = <%= @html_directory %>
 
 # manpage_directory: The location of the Postfix on-line manual pages.
 #
-manpage_directory = /usr/share/man
+manpage_directory = <%= @manpage_directory%>
 
 # sample_directory: The location of the Postfix sample configuration files.
 # This parameter is obsolete as of Postfix 2.1.
