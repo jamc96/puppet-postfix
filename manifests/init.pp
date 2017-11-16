@@ -87,6 +87,7 @@ class postfix(
   $aliases_group      = 'root',
   $aliases_owner      = 'root',
   $aliases_mode       = '0644',
+  $mail_receipten     = 'nobody'
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->
