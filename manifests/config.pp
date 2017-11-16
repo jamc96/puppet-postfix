@@ -37,7 +37,7 @@ class postfix::config(
   $aliases_group     = $::postfix::aliases_group,
   $aliases_owner     = $::postfix::aliases_owner,
   $aliases_mode      = $::postfix::aliases_mode,
-  $mail_receipten    = $::postfix::mail_receipten,
+  $mail_recipient    = $::postfix::mail_recipient,
   ) {
   # resources
   file { 'main.cf':
