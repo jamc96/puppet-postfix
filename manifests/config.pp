@@ -32,6 +32,11 @@ class postfix::config(
   $relayhost         = $::postfix::relayhost,
   $smtp_use_tls      = $::postfix::smtp_use_tls,
   $port              = $::postfix::port,
+  $aliases_dir       = $::postfix::aliases_dir,
+  $aliases_ensure    = $::postfix::aliases_ensure,
+  $aliases_group     = $::postfix::aliases_group,
+  $aliases_owner     = $::postfix::aliases_owner,
+  $aliases_mode      = $::postfix::aliases_mode,
   ) {
   # resources
   file { 'main.cf':
@@ -41,5 +46,13 @@ class postfix::config(
     mode    => $config_mode,
     owner   => $config_owner,
     path    => $config_dir,
+  }
+  file { 'aliases':
+    ensure  => $aliases_ensure,
+    content => template("${module_name}/aliases.erb"),
+    group   => $aliases_group,
+    mode    => $aliases_mode,
+    owner   => $aliases_owner,
+    path    => $aliases_dir,
   }
 }

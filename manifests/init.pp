@@ -82,6 +82,11 @@ class postfix(
   $myorigin           = $::fqdn,
   $relayhost          = '[mail.isp.example]',
   $smtp_use_tls       = 'yes',
+  $aliases_dir        = '/etc/aliases',
+  $aliases_ensure     = 'file',
+  $aliases_group      = 'root',
+  $aliases_owner      = 'root',
+  $aliases_mode       = '0644',
   ) inherits postfix::params {
 
   class { '::postfix::install': } ->
