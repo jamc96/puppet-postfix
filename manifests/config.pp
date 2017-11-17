@@ -48,12 +48,12 @@ class postfix::config(
     owner   => $config_owner,
     path    => $config_dir,
   }
-  # file { 'aliases':
-  #   ensure  => $aliases_ensure,
-  #   content => template("${module_name}/aliases.erb"),
-  #   group   => $aliases_group,
-  #   mode    => $aliases_mode,
-  #   owner   => $aliases_owner,
-  #   path    => $aliases_dir,
-  # }
+  file { 'aliases':
+    ensure  => $aliases_ensure,
+    content => template("${module_name}/aliases.erb"),
+    group   => $aliases_group,
+    mode    => $aliases_mode,
+    owner   => $aliases_owner,
+    path    => $aliases_dir,
+  }
 }
