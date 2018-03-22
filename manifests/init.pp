@@ -89,9 +89,13 @@ class postfix(
   $aliases_mode       = '0644',
   $mail_recipient     = 'nobody'
   ) inherits postfix::params {
+  #Adding relationship for class
+  contain postfix::install
+  contain postfix::config
+  contain postfix::service
+  contain postfix::params
 
-  class { '::postfix::install': } ->
-  class { '::postfix::config': } ~>
-  class { '::postfix::service': } ->
-  Class['::postfix']
+  Class['::postfix::install']
+  -> Class['::postfix::config']
+  ~> Class['::postfix::service']
 }
