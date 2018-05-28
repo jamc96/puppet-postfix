@@ -87,13 +87,24 @@ class postfix(
   $aliases_group      = 'root',
   $aliases_owner      = 'root',
   $aliases_mode       = '0644',
-  $mail_recipient     = 'nobody'
+  $mail_recipient     = 'nobody',
+  $mysql_lib_source   = undef,
   ) inherits postfix::params {
+  # adding mysql libs dependencie
+  if $mysql_lib_source {
+    exec { 'install_mysql_lib':
+      path    =>  '/usr/bin:/usr/sbin:/bin',
+      command => "rpm -Uvh ${mysql_lib_source}",
+      onlyif  => 'rpm -qa |grep -i MySQL-server-5.6.12',
+      unless  => ['rpm -qa |grep MariaDB','rpm -qa |grep -i MySQL-shared-compat-5.6.13-1.el6.x86_64'],
+      notify  => Class['postfix::install'],
+    }
+  }
   #Adding relationship for class
-  contain postfix::install
-  contain postfix::config
-  contain postfix::service
-  contain postfix::params
+  contain ::postfix::install
+  contain ::postfix::config
+  contain ::postfix::service
+  contain ::postfix::params
 
   Class['::postfix::install']
   -> Class['::postfix::config']
