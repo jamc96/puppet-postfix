@@ -90,7 +90,7 @@ class postfix(
   $mail_recipient     = 'nobody',
   $mysql_lib_source   = undef,
   ) inherits postfix::params {
-  # adding mysql libs dependencie
+  # mysql libs dependencies
   if $mysql_lib_source {
     exec { 'install_mysql_lib':
       path    =>  '/usr/bin:/usr/sbin:/bin',
