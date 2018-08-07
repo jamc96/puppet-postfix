@@ -1,59 +1,17 @@
 # == Class: postfix::configure
 #
-class postfix::config(
-  $config_dir        = $::postfix::config_dir,
-  $config_ensure     = $::postfix::config_ensure,
-  $config_group      = $::postfix::config_group,
-  $config_owner      = $::postfix::config_owner,
-  $config_mode       = $::postfix::config_mode,
-  $sample_directory  = $::postfix::sample_directory,
-  $readme_directory  = $::postfix::readme_directory,
-  $manpage_directory = $::postfix::manpage_directory,
-  $html_directory    = $::postfix::html_directory,
-  $setgid_group      = $::postfix::setgid_group,
-  $mailq_path        = $::postfix::mailq_path,
-  $newaliases_path   = $::postfix::newaliases_path,
-  $sendmail_path     = $::postfix::sendmail_path,
-  $debug_peer_level  = $::postfix::debug_peer_level,
-  $alias_database    = $::postfix::alias_database,
-  $alias_maps        = $::postfix::alias_maps,
-  $ukwn_reject_code  = $::postfix::ukwn_reject_code,
-  $mydestination     = $::postfix::mydestination,
-  $inet_protocols    = $::postfix::inet_protocols,
-  $inet_interfaces   = $::postfix::inet_interfaces,
-  $mail_owner        = $::postfix::mail_owner,
-  $data_directory    = $::postfix::data_directory,
-  $daemon_directory  = $::postfix::daemon_directory,
-  $command_directory = $::postfix::command_directory,
-  $queue_directory   = $::postfix::queue_directory,
-  $myhostname        = $::postfix::myhostname,
-  $mydomain          = $::postfix::mydomain,
-  $myorigin          = $::postfix::myorigin,
-  $relayhost         = $::postfix::relayhost,
-  $smtp_use_tls      = $::postfix::smtp_use_tls,
-  $port              = $::postfix::port,
-  $aliases_dir       = $::postfix::aliases_dir,
-  $aliases_ensure    = $::postfix::aliases_ensure,
-  $aliases_group     = $::postfix::aliases_group,
-  $aliases_owner     = $::postfix::aliases_owner,
-  $aliases_mode      = $::postfix::aliases_mode,
-  $mail_recipient    = $::postfix::mail_recipient,
-  ) {
-  # resources
-  file { 'main.cf':
-    ensure  => $config_ensure,
-    content => template("${module_name}/main.cf.erb"),
-    group   => $config_group,
-    mode    => $config_mode,
-    owner   => $config_owner,
-    path    => $config_dir,
+class postfix::config inherits postfix {
+  # defaults
+  File {
+    ensure => $postfix::config_ensure,
+    owner  => 'root',
+    group  => 'root',
   }
-  file { 'aliases':
-    ensure  => $aliases_ensure,
-    content => template("${module_name}/aliases.erb"),
-    group   => $aliases_group,
-    mode    => $aliases_mode,
-    owner   => $aliases_owner,
-    path    => $aliases_dir,
+  # config files
+  file {
+    $postfix::config_file:
+      content => template("${module_name}/main.cf.erb");
+    $postfix::aliases_path:
+      content => template("${module_name}/aliases.erb");
   }
 }
