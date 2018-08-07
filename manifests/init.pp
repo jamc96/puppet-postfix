@@ -43,6 +43,7 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class postfix(
+  $version            = $postfix::params::version,
   $package_ensure     = $postfix::params::package_ensure,
   $port               = '587',
   $config_file        = '/etc/postfix/main.cf',
@@ -50,8 +51,8 @@ class postfix(
   $config_group       = 'root',
   $config_owner       = 'root',
   $config_mode        = '0644',
-  $sample_directory   = "/usr/share/doc/postfix-${postfix::params::version}/samples",
-  $readme_directory   = "/usr/share/doc/postfix-${postfix::params::version}/README_FILES",
+  $sample_directory   = "/usr/share/doc/postfix-${version}/samples",
+  $readme_directory   = "/usr/share/doc/postfix-${version}/README_FILES",
   $manpage_directory  = '/usr/share/man',
   $html_directory     = 'no',
   $setgid_group       = 'postdrop',
@@ -93,12 +94,12 @@ class postfix(
       notify  => Class['postfix::install'],
     }
   }
-  #Adding relationship for class
+  # class containment
   contain ::postfix::install
   contain ::postfix::config
   contain ::postfix::service
   contain ::postfix::params
-
+  # class relationships
   Class['::postfix::install']
   -> Class['::postfix::config']
   ~> Class['::postfix::service']

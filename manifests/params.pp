@@ -1,7 +1,7 @@
 # == Class: postfix::params
 #
 class postfix::params {
-
+  # default parameters
   case $::operatingsystemmajrelease {
     '7': {
       $package_ensure   = '2:2.10.1-6.el7'
