@@ -15,7 +15,7 @@ describe 'postfix' do
         package_ensure   = '2:2.6.6-8.el6'
         version          = '2.6.6'
       end
-      it { is_expected.to contain_package('postfix').with(ensure: package_ensure, provider: 'yum')}
+      it { is_expected.to contain_package('postfix').with(ensure: package_ensure, provider: 'yum') }
       # config files
       # main config file configuration
       regex_array = [
@@ -45,12 +45,12 @@ describe 'postfix' do
         "readme_directory\s+[=]\s+\/usr\/share\/doc\/postfix[-]#{version}/README_FILES",
         'smtp_use_tls\s+[=]\s+yes',
       ]
-      it { is_expected.to contain_file('/etc/postfix/main.cf').with(ensure: 'present', owner: 'root', group: 'root')} 
+      it { is_expected.to contain_file('/etc/postfix/main.cf').with(ensure: 'present', owner: 'root', group: 'root') }
       regex_array.each do |regex|
         it { is_expected.to contain_file('/etc/postfix/main.cf').with_content(%r{^#{regex}$}) }
       end
       # aliases
-      it { is_expected.to contain_file('/etc/aliases').with(ensure: 'present', owner: 'root', group: 'root', ) }
+      it { is_expected.to contain_file('/etc/aliases').with(ensure: 'present', owner: 'root', group: 'root') }
     end
   end
 end
