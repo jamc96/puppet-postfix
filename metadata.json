@@ -2,6 +2,7 @@
   "name": "puppet-postfix",
   "version": "0.1.0",
   "author": "jamc96",
+  "summary": "Manage the postfix installation and configuration",
   "license": "Apache-2.0",
   "source": "https://github.com/jamc96/puppet-postfix.git",
   "project_page": "https://github.com/jamc96/puppet-postfix",
@@ -9,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
+      "version_requirement": ">= 1.1.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
