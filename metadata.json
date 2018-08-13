@@ -2,13 +2,40 @@
   "name": "puppet-postfix",
   "version": "0.1.0",
   "author": "jamc96",
-  "summary": null,
+  "summary": "Manage the postfix installation and configuration",
   "license": "Apache-2.0",
   "source": "https://github.com/jamc96/puppet-postfix.git",
   "project_page": "https://github.com/jamc96/puppet-postfix",
   "issues_url": "https://github.com/jamc96/puppet-postfix/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.1.0 < 5.0.0"
+    }
   ],
-  "data_provider": null
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "pdk-version": "1.6.0",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.6.0-0-gf5564c0"
 }
