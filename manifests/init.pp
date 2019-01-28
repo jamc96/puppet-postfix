@@ -43,14 +43,13 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class postfix(
-  Pattern[/^[.+_0-9:~-]+$/] $version = $postfix::params::version,
-  String $package_ensure             = $postfix::params::package_ensure,
+  Optional[String] $package_ensure   = undef,
   String $port                       = '587',
   String $config_file                = '/etc/postfix/main.cf',
   String $config_ensure              = 'present',
   String $service_ensure             = 'running',
-  String $sample_directory           = "/usr/share/doc/postfix-${version}/samples",
-  String $readme_directory           = "/usr/share/doc/postfix-${version}/README_FILES",
+  Optional[String] $sample_directory = undef,
+  Optional[String] $readme_directory = undef,
   String $manpage_directory          = '/usr/share/man',
   Enum['yes','no'] $html_directory   = 'no',
   String $setgid_group               = 'postdrop',
@@ -87,6 +86,34 @@ class postfix(
       unless  => ['rpm -qa |grep MariaDB','rpm -qa |grep -i MySQL-shared-compat-5.6.13-1.el6.x86_64'],
       notify  => Class['postfix::install'],
     }
+  }
+  # default variables 
+  if $package_ensure {
+    $_package_ensure = $package_ensure
+  } else {
+    # validate by os family
+    case $facts['os']['family'] {
+      'Debian': {
+        $_package_ensure = '3.3.0-1ubuntu0.2'
+      }
+      default: {
+        # rhel base os
+        $_package_ensure = $facts['operatingsystemrelease'] ? {
+          '7'     => '2:2.10.1-6.el7',
+          default => '2:2.6.6-8.el6'
+        }
+      }
+    }
+  }
+  # get package version
+  $version = $_package_ensure.match('\d+[.]\d+[.]\d+')[0]
+  $_sample_directory = $sample_directory ? {
+    undef   => "/usr/share/doc/postfix-${version}/samples",
+    default => $sample_directory,
+  }
+  $_readme_directory = $readme_directory ? {
+    undef   => "/usr/share/doc/postfix-${version}/README_FILES",
+    default => $readme_directory,
   }
   # class containment
   contain ::postfix::install

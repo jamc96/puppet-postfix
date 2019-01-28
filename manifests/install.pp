@@ -3,7 +3,6 @@
 class postfix::install inherits postfix {
   # resources
   package { 'postfix':
-    ensure   => $postfix::package_ensure,
-    provider => 'yum',
+    ensure   => $postfix::_package_ensure,
   }
 }
