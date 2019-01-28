@@ -22,9 +22,9 @@ postfix::data_directory: '/var/lib/postfix'
 postfix::daemon_directory: ~
 postfix::command_directory: '/usr/sbin'
 postfix::queue_directory: '/var/spool/postfix'
-postfix::myhostname: %{facts.hostname}
-postfix::mydomain: %{facts.domain}
-postfix::myorigin: %{facts.fqdn}
+postfix::myhostname: "%{facts.hostname}"
+postfix::mydomain: "%{facts.domain}"
+postfix::myorigin: "%{facts.fqdn}"
 postfix::relayhost: '[mail.isp.example]'
 postfix::smtp_use_tls: 'yes'
 postfix::aliases_path: '/etc/aliases'
