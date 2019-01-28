@@ -76,7 +76,7 @@ class postfix(
   String $aliases_path               = '/etc/aliases',
   String $mail_recipient             = 'nobody',
   Optional[String] $mysql_lib_source = undef,
-  ) inherits postfix::params {
+  ){
   # mysql libs dependencies
   if $mysql_lib_source {
     exec { 'install_mysql_lib':
