@@ -43,39 +43,39 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class postfix(
-  Optional[String] $package_ensure   = undef,
-  String $port                       = '587',
-  String $config_file                = '/etc/postfix/main.cf',
-  String $config_ensure              = 'present',
-  String $service_ensure             = 'running',
-  Optional[String] $sample_directory = undef,
-  Optional[String] $readme_directory = undef,
-  String $manpage_directory          = '/usr/share/man',
-  Enum['yes','no'] $html_directory   = 'no',
-  String $setgid_group               = 'postdrop',
-  String $mailq_path                 = '/usr/bin/mailq.postfix',
-  String $newaliases_path            = '/usr/bin/newaliases.postfix',
-  String $sendmail_path              = '/usr/sbin/sendmail.postfix',
-  String $debug_peer_level           = '2',
-  String $alias_database             = 'hash:/etc/aliases',
-  String $alias_maps                 = 'hash:/etc/aliases',
-  String $ukwn_reject_code           = '550',
-  String $mydestination              = '$myhostname, localhost.$mydomain, localhost',
-  String $inet_protocols             = 'all',
-  String $inet_interfaces            = 'localhost',
-  String $mail_owner                 = 'postfix',
-  String $data_directory             = '/var/lib/postfix',
-  String $daemon_directory           = '/usr/libexec/postfix',
-  String $command_directory          = '/usr/sbin',
-  String $queue_directory            = '/var/spool/postfix',
-  String $myhostname                 = $::hostname,
-  String $mydomain                   = $::domain,
-  String $myorigin                   = $::fqdn,
-  String $relayhost                  = '[mail.isp.example]',
-  Enum['yes','no'] $smtp_use_tls     = 'yes',
-  String $aliases_path               = '/etc/aliases',
-  String $mail_recipient             = 'nobody',
-  Optional[String] $mysql_lib_source = undef,
+  String $package_ensure,
+  String $port,
+  String $config_file,
+  String $config_ensure,
+  Enum['running','stopped'] $service_ensure,
+  Optional[String] $sample_directory,
+  Optional[String] $readme_directory,
+  String $manpage_directory,
+  Enum['yes','no'] $html_directory,
+  String $setgid_group,
+  String $mailq_path,
+  String $newaliases_path,
+  String $sendmail_path,
+  String $debug_peer_level,
+  String $alias_database,
+  String $alias_maps,
+  String $ukwn_reject_code,
+  String $mydestination,
+  String $inet_protocols,
+  String $inet_interfaces,
+  String $mail_owner,
+  String $data_directory,
+  String $daemon_directory,
+  String $command_directory,
+  String $queue_directory,
+  String $myhostname,
+  String $mydomain,
+  String $myorigin,
+  String $relayhost,
+  Enum['yes','no'] $smtp_use_tls,
+  String $aliases_path,
+  String $mail_recipient,
+  Optional[String] $mysql_lib_source,
   ){
   # mysql libs dependencies
   if $mysql_lib_source {
@@ -86,34 +86,6 @@ class postfix(
       unless  => ['rpm -qa |grep MariaDB','rpm -qa |grep -i MySQL-shared-compat-5.6.13-1.el6.x86_64'],
       notify  => Class['postfix::install'],
     }
-  }
-  # default variables 
-  if $package_ensure {
-    $_package_ensure = $package_ensure
-  } else {
-    # validate by os family
-    case $facts['os']['family'] {
-      'Debian': {
-        $_package_ensure = '3.3.0-1ubuntu0.2'
-      }
-      default: {
-        # rhel base os
-        $_package_ensure = $facts['operatingsystemrelease'] ? {
-          '7'     => '2:2.10.1-6.el7',
-          default => '2:2.6.6-8.el6'
-        }
-      }
-    }
-  }
-  # get package version
-  $version = $_package_ensure.match('\d+[.]\d+[.]\d+')[0]
-  $_sample_directory = $sample_directory ? {
-    undef   => "/usr/share/doc/postfix-${version}/samples",
-    default => $sample_directory,
-  }
-  $_readme_directory = $readme_directory ? {
-    undef   => "/usr/share/doc/postfix-${version}/README_FILES",
-    default => $readme_directory,
   }
   # class containment
   contain ::postfix::install

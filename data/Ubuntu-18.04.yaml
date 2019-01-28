@@ -1,0 +1,3 @@
+---
+postfix::package_ensure: '3.3.0-1ubuntu0.2'
+postfix::sample_directory: /usr/share/doc/postfix/samples

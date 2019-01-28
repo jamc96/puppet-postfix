@@ -1,0 +1,32 @@
+---
+postfix::package_ensure: 'present'
+postfix::port: '587'
+postfix::config_file: '/etc/postfix/main.cf'
+postfix::config_ensure: 'present'
+postfix::service_ensure: 'running'
+postfix::manpage_directory: '/usr/share/man'
+postfix::html_directory: 'no'
+postfix::setgid_group: 'postdrop'
+postfix::mailq_path: ~
+postfix::newaliases_path: ~
+postfix::sendmail_path: ~
+postfix::debug_peer_level: '2'
+postfix::alias_database: 'hash:/etc/aliases'
+postfix::alias_maps: 'hash:/etc/aliases'
+postfix::ukwn_reject_code: '550'
+postfix::mydestination: '$myhostname localhost.$mydomain localhost'
+postfix::inet_protocols: 'all'
+postfix::inet_interfaces: 'localhost'
+postfix::mail_owner: 'postfix'
+postfix::data_directory: '/var/lib/postfix'
+postfix::daemon_directory: ~
+postfix::command_directory: '/usr/sbin'
+postfix::queue_directory: '/var/spool/postfix'
+postfix::myhostname: %{facts.hostname}
+postfix::mydomain: %{facts.domain}
+postfix::myorigin: %{facts.fqdn}
+postfix::relayhost: '[mail.isp.example]'
+postfix::smtp_use_tls: 'yes'
+postfix::aliases_path: '/etc/aliases'
+postfix::mail_recipient: 'nobody'
+postfix::mysql_lib_source: ~

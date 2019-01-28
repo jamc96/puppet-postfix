@@ -1,0 +1,4 @@
+---
+postfix::package_ensure: 2:2.6.6-8.el6
+postfix::sample_directory: /usr/share/doc/postfix-2.6.6/samples
+postfix::readme_directory: /usr/share/doc/postfix-2.6.6/README_FILES
