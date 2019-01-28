@@ -1,4 +1,4 @@
 ---
-postfix::package_ensure: 2:2.10.1-6.el7
+postfix::package_ensure: 2:2.10.1-7.el7
 postfix::sample_directory: /usr/share/doc/postfix-2.10.1/samples
 postfix::readme_directory: /usr/share/doc/postfix-2.10.1/README_FILES
