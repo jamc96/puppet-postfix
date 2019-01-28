@@ -30,3 +30,4 @@ postfix::smtp_use_tls: 'yes'
 postfix::aliases_path: '/etc/aliases'
 postfix::mail_recipient: 'nobody'
 postfix::mysql_lib_source: ~
+postfix::readme_directory: ~
