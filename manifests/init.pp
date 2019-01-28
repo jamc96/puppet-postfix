@@ -119,7 +119,6 @@ class postfix(
   contain ::postfix::install
   contain ::postfix::config
   contain ::postfix::service
-  contain ::postfix::params
   # class relationships
   Class['::postfix::install']
   -> Class['::postfix::config']
